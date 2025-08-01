@@ -1,0 +1,44 @@
+name: 'Deploy to App ENgine Flex'
+
+on:
+  push:
+    branches:
+      - 'main'
+
+env:
+  PROJECT_ID: 'manuelmata-dev' # TODO: update to your Google Cloud project ID
+  REGION: 'us-central1' # TODO: update to your region
+  SERVICE: 'my-service-from-pipeline' # TODO: update to your service name
+  TOKEN: ${{ secrets.GCP_SA_KEY }}
+  BRANCH: ${{ github.head_ref || github.ref_name }}
+  APP_NAME: plain-language-app
+  JOB_NAME: plain-language-job
+  GROUNDING_JOB_NAME: plain-language-grounding-job
+  REPO_NAME: nodehello-1
+  SERVICE_ACCOUNT: 'test112024@manuelmata-dev.iam.gserviceaccount.com'
+  WORKLOAD_IDENTITY_PROVIDER: //iam.googleapis.com/projects/95436488673/locations/global/workloadIdentityPools/test
+  CICD_SERVICE_ACCOUNT: ${{ vars.CICD_SERVICE_ACCOUNT  }}
+  BUCKET_NAME: ${{ vars.BUCKET_NAME }}
+  FRONTEND_API_URI: ${{ vars.FRONTEND_API_URI }}
+
+jobs:
+  deploy:
+    runs-on: 'ubuntu-latest'
+    permissions:
+      contents: 'read'
+      id-token: 'write'
+    steps:
+      - name: 'Checkout'
+        uses: 'actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332'
+        
+      - name: Deploy to App Engine
+        id: deploy
+        uses: google-github-actions/deploy-appengine@v0.2.0
+        with:
+          deliverables: app.yaml
+          version: v1
+          project_id: ${{ env.PROJECT_ID }}
+          credentials: ${{ secrets.SA_KEY }}    
+      - name: Test
+        run: curl "${{ steps.deploy.outputs.url }}"
+     
