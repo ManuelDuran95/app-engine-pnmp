@@ -1,0 +1,20 @@
+{
+  "name": "appenginetest",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "dependencies": {
+    "axios": "^1.11.0",
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2"
+  },
+  "scripts": {
+    "start": "pnpm node manuel.js",
+    "dev":   "pnpm node manuel.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
