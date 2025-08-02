@@ -7,7 +7,13 @@ app.use(cors())
 
 
 app.get('/', (req, res) => {
-    var token = jwt.sign({ foo: 'bar' }, 'shhhhh');
+     const secretKey = 'example-signature-2srd';
+     const payload = {
+        userId: '123',
+        username: 'exampleUser',
+        role: 'admin'
+    };
+   const token = jwt.sign(payload, secretKey, { expiresIn: '1h' });
     res.send("This is your jwt token: " + token)
 })
 
