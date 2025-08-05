@@ -16,6 +16,16 @@ app.get('/', (req, res) => {
    const token = jwt.sign(payload, secretKey, { expiresIn: '1h' });
     res.send("This is your jwt token: " + token)
 })
+app.get('/hello', (req, res) => {
+     const secretKey = 'example-signature-2srd';
+     const payload = {
+        userId: '123',
+        username: 'exampleUser2',
+        role: 'user'
+    };
+   const token = jwt.sign(payload, secretKey, { expiresIn: '1h' });
+    res.send("This is your jwt token: " + token)
+})
 
 const port = 8080
 app.listen(port, () => {
