@@ -47,8 +47,6 @@ jobs:
       - name: Install Dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Build the Frontend
-        run: pnpm build
       - name: Authorize Google Cloud SDK
         id: 'auth'
         uses: google-github-actions/auth@v2
