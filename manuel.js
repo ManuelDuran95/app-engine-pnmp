@@ -14,7 +14,7 @@ app.get('/', (req, res) => {
         role: 'admin'
     };
    const token = jwt.sign(payload, secretKey, { expiresIn: '1h' });
-    res.send("This is your jwt token: " + token)
+    res.send("This is your admin jwt token: " + token)
 })
 app.get('/hello', (req, res) => {
      const secretKey = 'example-signature-2srd';
@@ -24,7 +24,7 @@ app.get('/hello', (req, res) => {
         role: 'user'
     };
    const token = jwt.sign(payload, secretKey, { expiresIn: '1h' });
-    res.send("This is your jwt token: " + token)
+    res.send("This is your user jwt token: " + token)
 })
 
 const port = 8080
