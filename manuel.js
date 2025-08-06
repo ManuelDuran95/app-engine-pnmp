@@ -27,14 +27,8 @@ app.get('/hello', (req, res) => {
     res.send("This is your user jwt token: " + token)
 })
 app.get('/probador', (req, res) => {
-     const secretKey = 'example-signature-2srd';
-     const payload = {
-        userId: '123',
-        username: 'exampleUser2',
-        role: 'user'
-    };
-   const token = jwt.sign(payload, secretKey, { expiresIn: '1h' });
-     const payload={error:"unable to make the request"};
+  console.log("hit test endpoint);
+    const payload={error:"unable to make the request"};
     res.status(500).send(payload)
 })
 const port = 8080
