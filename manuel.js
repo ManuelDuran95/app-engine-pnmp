@@ -27,7 +27,7 @@ app.get('/hello', (req, res) => {
     res.send("This is your user jwt token: " + token)
 })
 app.get('/probador', (req, res) => {
-  console.log("hit test endpoint);
+  console.log("hit test endpoint");
     const payload={error:"unable to make the request"};
     res.status(500).send(payload)
 })
