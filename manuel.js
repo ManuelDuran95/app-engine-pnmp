@@ -26,6 +26,11 @@ app.get('/hello', (req, res) => {
    const token = jwt.sign(payload, secretKey, { expiresIn: '1h' });
     res.send("This is your user jwt token: " + token)
 })
+app.get('/checker', (req, res) => {
+  console.log("hit test endpoint");
+    const payload={error:"unable to make the request"};
+    res.status(500).send(payload)
+})
 app.get('/probador', (req, res) => {
   console.log("hit test endpoint");
     const payload={error:"unable to make the request"};
